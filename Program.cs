@@ -1,9 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyWebApplication1_.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MvcMovie.Data;
+using MvcMovie.Models;
+using System;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyWebApplication1_Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyWebApplication1_Context") ?? throw new InvalidOperationException("Connection string 'MyWebApplication1_Context' not found.")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("MyWebApplication1_Context") ?? throw new InvalidOperationException("Connection string 'MyWebApplication1_Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -32,3 +39,5 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 app.Run();
+
+
